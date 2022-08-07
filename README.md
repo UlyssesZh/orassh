@@ -1,8 +1,11 @@
 # Orassh
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/orassh`. To experiment with that code, run `bin/console` for an interactive prompt.
+A free ngrok account can help you connect to your remote computer over the internet,
+but the URL and port differ each time.
+This tool helps you to automate the task:
 
-TODO: Delete this and the text above, and describe your gem
+- On server: run ngrok, and upload the URL and port to a GitHub Gist file;
+- On client: read the URL and port from the GitHub Gist file, and do the previously configured task.
 
 ## Installation
 
@@ -22,7 +25,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Default configuration file is at `~/.config/orassh.yml`.
+On the server, make sure to get tunnels set up in the ngrok config file
+(default at `~/.config/ngrok/ngrok.yml`).
+
+Use command `orassh -h` to see help for the `orassh` command.
+
+Typical use: configure the tunnel with TCP protocol named as `ssh` in both
+Orassh config file and ngrok config file,
+and then run
+```shell
+orassh --server ssh
+```
+to start the ngrok tunnel.
+Then, in other computers, you can SSH to the server using
+```shell
+orassh ssh
+```
+as long as the server and the client have the same Gist ID
+configured in their Orassh config files. 
 
 ## Development
 

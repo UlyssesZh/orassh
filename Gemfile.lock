@@ -1,0 +1,25 @@
+PATH
+  remote: .
+  specs:
+    orassh (0.1.0)
+      gist (>= 6.0.0)
+      highline (>= 2.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    gist (6.0.0)
+    highline (2.0.3)
+    minitest (5.15.0)
+    rake (13.0.6)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  minitest (~> 5.0)
+  orassh!
+  rake (~> 13.0)
+
+BUNDLED WITH
+   2.3.7

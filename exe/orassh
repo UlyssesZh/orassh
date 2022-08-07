@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'highline/import'
+require 'orassh'
+
+type = :client
+config_path = File.expand_path '~/.config/orassh.yml'
+OptionParser.new do |parser|
+	parser.banner = 'Usage: orassh [tunnels] [options]'
+	parser.on '-h', '--help', 'Prints this help' do |o|
+		puts parser
+		exit
+	end
+	parser.on '-s', '--server', 'Server mode' do |o|
+		type = :server
+	end
+	parser.on '-c', '--client', 'Client mode' do |o|
+		type = :client
+	end
+	parser.on '-C', '--config FILEPATH', 'Config file' do |o|
+		config_path = o
+	end
+	parser.on '-v', '--version', 'Prints version' do |o|
+		puts Orassh::VERSION
+		exit
+	end
+end.parse!
+
+unless File.exist? config_path
+	if HighLine.agree "Config file '#{config_path}' does not exist. Create one and edit it? [y/n]"
+		File.write config_path, Orassh::DEFAULT_CONFIG
+		system ENV['EDITOR'] || 'nano', config_path
+	end
+end
+
+if type == :server
+	Orassh::Server.run config_path, ARGV.to_a
+else
+	Orassh::Client.run config_path, ARGV.to_a
+end

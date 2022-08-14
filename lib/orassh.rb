@@ -224,12 +224,12 @@ class << Orassh::Client = Module.new
 			raise Orassh::CommandNotSpecified, "Command is not specified for tunnel '#{tunnel}'"
 		end
 		command.gsub! '{NAME}', tunnel
-		command.gsub! '{ID}', processed_tunnel['id']
-		command.gsub! '{PROTO}', processed_tunnel['proto']
-		command.gsub! '{DOMAIN}', processed_tunnel['domain']
-		command.gsub! '{PORT}', processed_tunnel['port']
-		command.gsub! '{ADDR}', processed_tunnel['addr']
-		command.gsub! '{URL}', processed_tunnel['url']
+		command.gsub! '{ID}', processed_tunnel['id'].to_s
+		command.gsub! '{PROTO}', processed_tunnel['proto'].to_s
+		command.gsub! '{DOMAIN}', processed_tunnel['domain'].to_s
+		command.gsub! '{PORT}', processed_tunnel['port'].to_s
+		command.gsub! '{ADDR}', processed_tunnel['addr'].to_s
+		command.gsub! '{URL}', processed_tunnel['url'].to_s
 		command.gsub! '\}', '}'
 		system command
 	end

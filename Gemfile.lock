@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    orassh (0.1.0)
+    orassh (0.1.1)
       gist (>= 6.0.0)
       highline (>= 2.0.0)
 

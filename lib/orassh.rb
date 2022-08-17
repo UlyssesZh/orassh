@@ -22,14 +22,14 @@ def Gist.get_gist_content id, file_name = nil
 		
 		if file_name
 			file = files[file_name]
-			raise Error, "Gist with id of #{id} and file #{file_name} does not exist." unless file
+			raise Gist::Error, "Gist with id of #{id} and file #{file_name} does not exist." unless file
 		else
 			file = files.values.first
 		end
 		
 		file["content"]
 	else
-		raise Error, "Gist with id of #{id} does not exist."
+		raise Gist::Error, "Gist with id of #{id} does not exist."
 	end
 end
 
